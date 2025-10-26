@@ -1,0 +1,35 @@
+{
+  "scenario": {
+    "id": "custom_scenario_1",
+    "name": "Мой пользовательский сценарий",
+    "description": "Описание вашего сценария",
+    "isCustom": true,
+    "config": {
+      "connectionStrengthMultiplier": 1.0,
+      "opinionChangeRate": 0.15,
+      "similarityThreshold": 0.3,
+      "initialConnectionDensity": 0.3,
+      "reinforcementFactor": 1.2,
+      "disagreementPenalty": 0.8
+    }
+  },
+  "topicSettings": {
+    "topicCount": 3,
+    "topicNames": ["Тема 1", "Тема 2", "Тема 3"],
+    "topicWeights": [1.0, 1.0, 1.0]
+  },
+  "opinionSettings": {
+    "initialDistribution": "random",
+    "opinionRange": {
+      "min": -1,
+      "max": 1
+    }
+  },
+  "simulationParams": {
+    "agentCount": 50,
+    "cycles": 100,
+    "vectorDimension": 10,
+    "numClusters": 3
+  }
+}
+

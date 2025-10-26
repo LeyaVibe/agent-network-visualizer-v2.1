@@ -124,15 +124,10 @@
 - **Node.js**: версия 18.x или выше
 - **npm** или **pnpm**: менеджер пакетов
 
-### Шаг 1: Загрузка и распаковка
+### Шаг 1: Клонирование репозитория
 
 ```bash
-# Скачайте архив agent-network-visualizer-v2.1-deploy.tar.gz
-
-# Распакуйте архив
-tar -xzf agent-network-visualizer-v2.1-deploy.tar.gz
-
-# Перейдите в директорию проекта
+git clone https://github.com/LeyaVibe/agent-network-visualizer-v2.1.git
 cd agent-network-visualizer-v2.1
 ```
 
@@ -540,6 +535,7 @@ agent-network-visualizer-v2.1/
 ├── package.json                     # Зависимости проекта
 ├── vite.config.js                   # Конфигурация Vite
 ├── tailwind.config.js               # Конфигурация Tailwind CSS
+├── docs_technical.html              # Техническая документация с формулами
 └── README.md                        # Документация
 ```
 
@@ -551,7 +547,7 @@ agent-network-visualizer-v2.1/
 
 Для максимально подробного описания всех математических моделей, алгоритмов и формул откройте файл:
 
-**[Agent_Network_Visualizer_Technical_Documentation.html](./Agent_Network_Visualizer_Technical_Documentation.html)**
+**[docs_technical.html](./docs_technical.html)**
 
 Этот HTML-файл содержит:
 - ✅ Корректно отрендеренные математические формулы (MathJax)
@@ -560,12 +556,6 @@ agent-network-visualizer-v2.1/
 - ✅ Ссылки на Wikipedia для каждой математической модели
 - ✅ Примеры расчетов с пошаговыми решениями
 - ✅ Описание всех сетевых метрик и статистических тестов
-
-### Дополнительные материалы
-
-- **Инструкция по развертыванию**: Пошаговое руководство по установке и настройке
-- **Отчёты о диапазонах значений**: Документация по изменениям в версии 2.1
-- **Справочные материалы**: Ссылки на научные статьи и Wikipedia
 
 ---
 

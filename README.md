@@ -221,7 +221,7 @@ sim(A, B) = cos(θ) = (A · B) / (||A|| × ||B||)
 - **0**: Нейтральные взгляды (векторы перпендикулярны)
 - **-1**: Противоположные взгляды (векторы направлены в разные стороны)
 
-**Справка:** [Косинусное сходство — Wikipedia](https://ru.wikipedia.org/wiki/Косинусное_сходство)
+**Справка:** [Cosine Similarity — Wikipedia](https://en.wikipedia.org/wiki/Cosine_similarity)
 
 ### Мнение агента по теме
 
@@ -275,7 +275,7 @@ Connection(t+1) = max(0, Connection(t) - Δdecrease)
 ```
 Где `Δdecrease ~ U(0.08, 0.13)`
 
-**Справка:** [Модель динамики мнений — Wikipedia](https://en.wikipedia.org/wiki/Opinion_dynamics)
+**Справка:** [Opinion Dynamics in Social Networks (arXiv)](https://arxiv.org/abs/2201.01322)
 
 ---
 
@@ -347,7 +347,7 @@ Connection(t+1) = max(0, Connection(t) - Δdecrease)
 - Анализ влияния алгоритмов рекомендаций
 - Моделирование информационной изоляции
 
-**Справка:** [Эхо-камера (медиа) — Wikipedia](https://ru.wikipedia.org/wiki/Эхо-камера_(медиа))
+**Справка:** [Echo Chamber (Media) — Wikipedia](https://en.wikipedia.org/wiki/Echo_chamber_(media))
 
 ---
 

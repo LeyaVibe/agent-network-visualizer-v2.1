@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Техническая документация: Agent Network Visualizer v2.1</title>
+    
+    <!-- MathJax для отображения формул -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 40px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .formula-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .interpretation {
+            background-color: #e8f4f8;
+            border-left: 4px solid #2ecc71;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .toc {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Полная техническая документация: Agent Network Visualizer v2.1</h1>
+        
+        <p><strong>Автор:</strong> Manus AI<br>
+        <strong>Дата:</strong> 26 октября 2025<br>
+        <strong>Версия документа:</strong> 2.0</p>
+
+        <div class="toc">
+            <h2>Содержание</h2>
+            <ul>
+                <li><a href="#intro">1. Введение и архитектура</a></li>
+                <li><a href="#math">2. Математические основы</a></li>
+                <li><a href="#algorithms">3. Алгоритмы симуляции</a></li>
+                <li><a href="#scenarios">4. Система сценариев</a></li>
+                <li><a href="#analytics">5. Модуль аналитики</a></li>
+                <li><a href="#network">6. Сетевые метрики</a></li>
+                <li><a href="#stats">7. Статистические тесты</a></li>
+                <li><a href="#export">8. Экспорт данных</a></li>
+                <li><a href="#examples">9. Примеры расчетов</a></li>
+                <li><a href="#references">10. Справочные материалы</a></li>
+            </ul>
+        </div>
+
+        <h2 id="intro">1. Введение и архитектура</h2>
+        
+        <h3>1.1. Общая концепция</h3>
+        <p><strong>Agent Network Visualizer</strong> — это веб-приложение для моделирования динамики формирования социальных связей и эволюции мнений в сети автономных агентов. Приложение основано на <strong>векторном представлении</strong> ценностей агентов и тем обсуждения в многомерном пространстве.</p>
+
+        <h3>1.2. Технологический стек</h3>
+        <table>
+            <tr>
+                <th>Компонент</th>
+                <th>Технология</th>
+                <th>Версия</th>
+                <th>Назначение</th>
+            </tr>
+            <tr>
+                <td><strong>Frontend Framework</strong></td>
+                <td><a href="https://react.dev/" target="_blank">React</a></td>
+                <td>18.x</td>
+                <td>Построение пользовательского интерфейса</td>
+            </tr>
+            <tr>
+                <td><strong>Build Tool</strong></td>
+                <td><a href="https://vitejs.dev/" target="_blank">Vite</a></td>
+                <td>5.x</td>
+                <td>Быстрая сборка и разработка</td>
+            </tr>
+            <tr>
+                <td><strong>Styling</strong></td>
+                <td><a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a></td>
+                <td>3.x</td>
+                <td>Утилитарный CSS-фреймворк</td>
+            </tr>
+            <tr>
+                <td><strong>Visualization</strong></td>
+                <td><a href="https://d3js.org/" target="_blank">D3.js</a></td>
+                <td>7.x</td>
+                <td>Визуализация графов сети</td>
+            </tr>
+            <tr>
+                <td><strong>Charts</strong></td>
+                <td><a href="https://recharts.org/" target="_blank">Recharts</a></td>
+                <td>2.x</td>
+                <td>Построение графиков и диаграмм</td>
+            </tr>
+            <tr>
+                <td><strong>Statistics</strong></td>
+                <td><a href="https://jstat.github.io/" target="_blank">jStat</a></td>
+                <td>1.x</td>
+                <td>Статистические вычисления</td>
+            </tr>
+        </table>
+
+        <h2 id="math">2. Математические основы</h2>
+        
+        <h3>2.1. Векторное пространство</h3>
+        <p>Все агенты и темы представлены векторами в <em>D</em>-мерном евклидовом пространстве, где <em>D</em> — размерность вектора (по умолчанию <em>D</em>=10).</p>
+        
+        <div class="formula-box">
+            <p><strong>Вектор ценностей агента:</strong></p>
+            <p>\[\vec{A} = (a_1, a_2, \ldots, a_D) \in \mathbb{R}^D\]</p>
+            
+            <p><strong>Вектор темы:</strong></p>
+            <p>\[\vec{T} = (t_1, t_2, \ldots, t_D) \in \mathbb{R}^D\]</p>
+            
+            <p>Каждая координата вектора генерируется случайным образом в диапазоне [-1, 1]:</p>
+            <p>\[a_i, t_i \in [-1, 1], \quad i = 1, \ldots, D\]</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://ru.wikipedia.org/wiki/Евклидово_пространство" target="_blank">Евклидово пространство — Wikipedia</a></p>
+
+        <h3>2.2. Нормализация векторов</h3>
+        <p>Все векторы нормализуются до единичной длины для обеспечения корректного расчета косинусной близости.</p>
+        
+        <div class="formula-box">
+            <p><strong>Евклидова норма (длина) вектора:</strong></p>
+            <p>\[\|\vec{V}\| = \sqrt{\sum_{i=1}^{D} v_i^2}\]</p>
+            
+            <p><strong>Формула нормализации:</strong></p>
+            <p>\[\text{normalize}(\vec{V}) = \frac{\vec{V}}{\|\vec{V}\|} = \left(\frac{v_1}{\|\vec{V}\|}, \frac{v_2}{\|\vec{V}\|}, \ldots, \frac{v_D}{\|\vec{V}\|}\right)\]</p>
+            
+            <p>После нормализации:</p>
+            <p>\[\|\text{normalize}(\vec{V})\| = 1\]</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://ru.wikipedia.org/wiki/Нормализация_(математика)" target="_blank">Нормализация вектора — Wikipedia</a></p>
+
+        <h3>2.3. Косинусная близость (Cosine Similarity)</h3>
+        <p>Косинусная близость измеряет угол между двумя векторами и используется для определения сходства между агентами, а также между агентами и темами.</p>
+        
+        <div class="formula-box">
+            <p><strong>Формула косинусной близости:</strong></p>
+            <p>\[\text{sim}(\vec{A}, \vec{B}) = \cos(\theta) = \frac{\vec{A} \cdot \vec{B}}{\|\vec{A}\| \cdot \|\vec{B}\|}\]</p>
+            
+            <p>Где:</p>
+            <ul>
+                <li>\(\vec{A} \cdot \vec{B} = \sum_{i=1}^{D} a_i \cdot b_i\) — скалярное произведение векторов</li>
+                <li>\(\theta\) — угол между векторами</li>
+            </ul>
+            
+            <p><strong>Диапазон значений:</strong></p>
+            <p>\[\text{sim}(\vec{A}, \vec{B}) \in [-1, 1]\]</p>
+        </div>
+
+        <table>
+            <tr>
+                <th>Значение</th>
+                <th>Угол θ</th>
+                <th>Интерпретация</th>
+            </tr>
+            <tr>
+                <td><strong>+1</strong></td>
+                <td>0°</td>
+                <td>Векторы направлены в одну сторону (идентичные взгляды)</td>
+            </tr>
+            <tr>
+                <td><strong>0</strong></td>
+                <td>90°</td>
+                <td>Векторы перпендикулярны (нейтральные взгляды)</td>
+            </tr>
+            <tr>
+                <td><strong>-1</strong></td>
+                <td>180°</td>
+                <td>Векторы направлены в противоположные стороны (противоположные взгляды)</td>
+            </tr>
+        </table>
+        
+        <p><strong>Справка:</strong> <a href="https://ru.wikipedia.org/wiki/Косинусное_сходство" target="_blank">Косинусное сходство — Wikipedia</a></p>
+
+        <h3>2.4. Мнение агента по теме</h3>
+        <p>Мнение агента <em>A</em> по теме <em>T</em> определяется как косинусная близость между вектором ценностей агента и вектором темы:</p>
+        
+        <div class="formula-box">
+            <p>\[\text{Opinion}_{A,T} = \text{sim}(\vec{A}, \vec{T}) = \frac{\vec{A} \cdot \vec{T}}{\|\vec{A}\| \cdot \|\vec{T}\|}\]</p>
+        </div>
+
+        <div class="interpretation">
+            <p><strong>Диапазон мнений:</strong> [-1, 1]</p>
+            <ul>
+                <li>\(\text{Opinion}_{A,T} > 0.2\) — агент <strong>"За"</strong> тему</li>
+                <li>\(|\text{Opinion}_{A,T}| \leq 0.2\) — агент <strong>нейтрален</strong></li>
+                <li>\(\text{Opinion}_{A,T} < -0.2\) — агент <strong>"Против"</strong> темы</li>
+            </ul>
+        </div>
+
+        <h2 id="algorithms">3. Алгоритмы симуляции</h2>
+        
+        <h3>3.1. Генерация популяции агентов</h3>
+        <p>Алгоритм использует <strong>K-means кластеризацию</strong> для создания <em>K</em> групп агентов с различными ценностными ориентациями.</p>
+        
+        <div class="note">
+            <p><strong>Алгоритм:</strong></p>
+            <ol>
+                <li><strong>Инициализация центров кластеров:</strong> Создается <em>K</em> центров кластеров, каждый центр — случайный нормализованный вектор</li>
+                <li><strong>Генерация агентов:</strong> Для каждого агента генерируется вектор ценностей с шумом вокруг центра кластера</li>
+                <li><strong>Переназначение кластеров:</strong> Каждый агент назначается к ближайшему центру кластера</li>
+            </ol>
+        </div>
+
+        <div class="formula-box">
+            <p><strong>Генерация агента с шумом:</strong></p>
+            <p>\[\vec{A}_i = \text{normalize}(\vec{C}_k + \vec{\epsilon})\]</p>
+            <p>Где \(\vec{\epsilon}\) — вектор шума, \(\epsilon_j \sim \mathcal{U}(-\sigma, \sigma)\), \(\sigma \in [0.4, 0.7]\)</p>
+            
+            <p><strong>Переназначение к ближайшему кластеру:</strong></p>
+            <p>\[\text{cluster}(A_i) = \arg\max_{k} \text{sim}(\vec{A}_i, \vec{C}_k)\]</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://ru.wikipedia.org/wiki/Метод_k-средних" target="_blank">K-means — Wikipedia</a></p>
+
+        <h3>3.2. Расчет силы связи между агентами</h3>
+        <p>Сила связи определяет <strong>вероятность общения</strong> между двумя агентами и рассчитывается как взвешенная комбинация трех компонентов.</p>
+        
+        <div class="formula-box">
+            <p><strong>Формула силы связи:</strong></p>
+            <p>\[\text{Strength}(A, B) = \min\left(1, \max\left(0, \alpha \cdot \text{ValSim}(A, B) + \beta \cdot \text{TopAlign}(A, B) + \gamma\right)\right)\]</p>
+            
+            <p>Где:</p>
+            <ul>
+                <li>\(\alpha = 0.4\) — вес сходства ценностей</li>
+                <li>\(\beta = 0.3\) — вес тематического выравнивания</li>
+                <li>\(\gamma = 0.1\) — базовая вероятность случайного общения</li>
+            </ul>
+        </div>
+
+        <h4>3.2.1. Сходство ценностей (Value Similarity)</h4>
+        <div class="formula-box">
+            <p>\[\text{ValSim}(A, B) = \max(0, \text{sim}(\vec{A}, \vec{B}))\]</p>
+        </div>
+        
+        <div class="interpretation">
+            <p><strong>Логика:</strong> Агенты с противоположными ценностями (отрицательная близость) не формируют связи, поэтому отрицательные значения обрезаются до 0.</p>
+        </div>
+
+        <h4>3.2.2. Тематическое выравнивание (Topical Alignment)</h4>
+        <div class="formula-box">
+            <p>\[\text{TopAlign}(A, B) = \frac{1}{|T|} \sum_{T_j \in \mathcal{T}} \min\left(\max(0, \text{sim}(\vec{A}, \vec{T}_j)), \max(0, \text{sim}(\vec{B}, \vec{T}_j))\right)\]</p>
+        </div>
+        
+        <div class="interpretation">
+            <p><strong>Логика:</strong> Агенты склонны общаться на темы, которые близки обоим. Берется минимальное положительное сходство с каждой темой, затем усредняется по всем темам.</p>
+        </div>
+
+        <h3>3.3. Динамика связей (основной цикл симуляции)</h3>
+        <p>Симуляция проходит <em>C</em> циклов (по умолчанию <em>C</em>=50). В каждом цикле происходит <em>2N</em> случайных попыток взаимодействия.</p>
+        
+        <div class="note">
+            <p><strong>Алгоритм одного цикла:</strong></p>
+            <ol>
+                <li><strong>Инициализация:</strong> Все связи инициализируются слабыми значениями</li>
+                <li><strong>Попытка общения:</strong> Случайно выбирается пара агентов, рассчитывается вероятность общения</li>
+                <li><strong>Выбор темы:</strong> Тема выбирается пропорционально весам (взвешенная случайная выборка)</li>
+                <li><strong>Корректировка связи:</strong> Связь усиливается или ослабляется в зависимости от разницы во мнениях</li>
+            </ol>
+        </div>
+
+        <div class="formula-box">
+            <p><strong>Финальная вероятность общения:</strong></p>
+            <p>\[P_{\text{comm}} = \min\left(0.8, 0.3 \cdot \text{Strength}(i, j) + 0.5 \cdot \text{Connection}_{i,j}^{(t)} + 0.2\right)\]</p>
+            
+            <p><strong>Корректировка связи при близких мнениях</strong> (\(\Delta\text{Opinion} < \text{Threshold}\)):</p>
+            <p>\[\text{Connection}_{i,j}^{(t+1)} = \min\left(1, \text{Connection}_{i,j}^{(t)} + \Delta_{\text{increase}}\right)\]</p>
+            <p>Где \(\Delta_{\text{increase}} \sim \mathcal{U}(0.15, 0.25)\)</p>
+            
+            <p><strong>Корректировка связи при различающихся мнениях</strong> (\(\Delta\text{Opinion} \geq \text{Threshold}\)):</p>
+            <p>\[\text{Connection}_{i,j}^{(t+1)} = \max\left(0, \text{Connection}_{i,j}^{(t)} - \Delta_{\text{decrease}}\right)\]</p>
+            <p>Где \(\Delta_{\text{decrease}} \sim \mathcal{U}(0.08, 0.13)\)</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://en.wikipedia.org/wiki/Opinion_dynamics" target="_blank">Модель динамики мнений — Wikipedia</a></p>
+
+        <h2 id="scenarios">4. Система сценариев</h2>
+        
+        <h3>4.1. Типы сценариев</h3>
+        <p>Приложение поддерживает 4 предустановленных сценария, моделирующих различные социальные феномены.</p>
+        
+        <table>
+            <tr>
+                <th>Сценарий</th>
+                <th>ID</th>
+                <th>Описание</th>
+                <th>Количество тем</th>
+                <th>Тип близости</th>
+                <th>Распределение мнений</th>
+            </tr>
+            <tr>
+                <td><strong>Поиск консенсуса</strong></td>
+                <td><code>consensus</code></td>
+                <td>Агенты стремятся к общему мнению</td>
+                <td>5</td>
+                <td>convergent (0.8)</td>
+                <td>Нормальное</td>
+            </tr>
+            <tr>
+                <td><strong>Поляризация мнений</strong></td>
+                <td><code>polarization</code></td>
+                <td>Формирование противоположных групп</td>
+                <td>3</td>
+                <td>divergent (0.9)</td>
+                <td>Бимодальное</td>
+            </tr>
+            <tr>
+                <td><strong>Эхо-камеры</strong></td>
+                <td><code>echo_chambers</code></td>
+                <td>Изолированные группы с усилением взглядов</td>
+                <td>7</td>
+                <td>cluster_isolated (0.7)</td>
+                <td>По кластерам</td>
+            </tr>
+            <tr>
+                <td><strong>Информационный каскад</strong></td>
+                <td><code>information_cascade</code></td>
+                <td>Быстрое распространение мнения</td>
+                <td>4</td>
+                <td>cascade (0.6)</td>
+                <td>Случайное</td>
+            </tr>
+        </table>
+
+        <h3>4.2. Подробное описание сценариев</h3>
+        
+        <h4>4.2.1. Поиск консенсуса (Consensus Building)</h4>
+        <p><strong>Цель:</strong> Моделирование процесса достижения согласия в группе.</p>
+        
+        <div class="note">
+            <p><strong>Механизм:</strong></p>
+            <ul>
+                <li>Все темы выравниваются с центром <strong>одного кластера</strong> (обычно кластер 0)</li>
+                <li>Векторы тем генерируются близко к центру этого кластера</li>
+                <li>Начальные мнения агентов распределены нормально вокруг нуля</li>
+            </ul>
+        </div>
+
+        <div class="formula-box">
+            <p><strong>Генерация темы близкой к кластеру:</strong></p>
+            <p>\[\vec{T}_j = \text{normalize}(\vec{C}_0 + \vec{\epsilon}), \quad \|\vec{\epsilon}\| \approx 0.2\]</p>
+            
+            <p><strong>Начальные мнения:</strong></p>
+            <p>\[\text{Opinion}_{i,j}^{(0)} \sim \mathcal{N}(0, 0.2)\]</p>
+        </div>
+
+        <div class="interpretation">
+            <p><strong>Ожидаемый результат:</strong> Высокая плотность сети, формирование консенсуса по большинству тем.</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://en.wikipedia.org/wiki/Consensus_decision-making" target="_blank">Консенсус в социальных сетях — Wikipedia</a></p>
+
+        <h4>4.2.2. Поляризация мнений (Opinion Polarization)</h4>
+        <p><strong>Цель:</strong> Моделирование разделения общества на противоположные группы.</p>
+        
+        <div class="note">
+            <p><strong>Механизм:</strong></p>
+            <ul>
+                <li>Темы распределяются между кластерами циклически</li>
+                <li>Начальные мнения бимодальны (два пика)</li>
+            </ul>
+        </div>
+
+        <div class="formula-box">
+            <p><strong>Распределение тем по кластерам:</strong></p>
+            <p>\[\text{targetCluster}(T_j) = j \bmod K\]</p>
+            
+            <p><strong>Бимодальное распределение мнений:</strong></p>
+            <p>\[\text{Opinion}_{i,j}^{(0)} = \begin{cases} +0.7 & \text{с вероятностью } 0.5 \\ -0.7 & \text{с вероятностью } 0.5 \end{cases}\]</p>
+        </div>
+
+        <div class="interpretation">
+            <p><strong>Ожидаемый результат:</strong> Формирование двух или более изолированных групп с противоположными мнениями, низкая межкластерная связность.</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://ru.wikipedia.org/wiki/Групповая_поляризация" target="_blank">Поляризация групп — Wikipedia</a></p>
+
+        <h4>4.2.3. Эхо-камеры (Echo Chambers)</h4>
+        <p><strong>Цель:</strong> Моделирование изолированных информационных пузырей.</p>
+        
+        <div class="note">
+            <p><strong>Механизм:</strong></p>
+            <ul>
+                <li>Темы распределяются блоками между кластерами</li>
+                <li>Начальные мнения зависят от кластера</li>
+            </ul>
+        </div>
+
+        <div class="formula-box">
+            <p><strong>Блочное распределение тем:</strong></p>
+            <p>\[\text{targetCluster}(T_j) = \left\lfloor \frac{j}{\lceil |T| / K \rceil} \right\rfloor\]</p>
+            
+            <p><strong>Мнения зависят от кластера:</strong></p>
+            <p>\[\text{Opinion}_{i,j}^{(0)} = \frac{\text{cluster}(A_i)}{K-1} \cdot 2 - 1\]</p>
+            <p>(Линейное распределение от -1 до +1 в зависимости от номера кластера)</p>
+        </div>
+
+        <div class="interpretation">
+            <p><strong>Ожидаемый результат:</strong> Высокая внутрикластерная связность, очень низкая межкластерная связность, усиление начальных убеждений.</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://ru.wikipedia.org/wiki/Эхо-камера_(медиа)" target="_blank">Эхо-камера (медиа) — Wikipedia</a></p>
+
+        <h4>4.2.4. Информационный каскад (Information Cascade)</h4>
+        <p><strong>Цель:</strong> Моделирование быстрого распространения информации/мнения.</p>
+        
+        <div class="note">
+            <p><strong>Механизм:</strong></p>
+            <ul>
+                <li>Темы генерируются случайно</li>
+                <li>Сила близости убывает для последующих тем</li>
+                <li>Начальные мнения случайны</li>
+            </ul>
+        </div>
+
+        <div class="formula-box">
+            <p><strong>Убывающая сила близости:</strong></p>
+            <p>\[\text{proximityLevel}(T_j) = 0.6 \cdot \left(1 - \frac{j}{|T|}\right)\]</p>
+            
+            <p><strong>Случайные начальные мнения:</strong></p>
+            <p>\[\text{Opinion}_{i,j}^{(0)} \sim \mathcal{U}(-1, 1)\]</p>
+        </div>
+
+        <div class="interpretation">
+            <p><strong>Ожидаемый результат:</strong> Быстрое изменение мнений в первых циклах, формирование доминирующего мнения.</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://ru.wikipedia.org/wiki/Информационный_каскад" target="_blank">Информационный каскад — Wikipedia</a></p>
+
+        <h2 id="analytics">5. Модуль аналитики</h2>
+        
+        <p>Модуль аналитики (<code>AdvancedAnalyticsWithExport.jsx</code>) предоставляет четыре основных типа анализа:</p>
+
+        <h3>5.1. Временные ряды (Time Series)</h3>
+        <p><strong>Назначение:</strong> Отслеживание эволюции ключевых метрик на протяжении всех циклов симуляции.</p>
+        
+        <div class="formula-box">
+            <p><strong>Рассчитываемые метрики:</strong></p>
+            
+            <p>1. <strong>Среднее мнение по каждой теме:</strong></p>
+            <p>\[\overline{\text{Opinion}}_j^{(t)} = \frac{1}{N} \sum_{i=1}^{N} \text{Opinion}_{i,j}^{(t)}\]</p>
+            
+            <p>2. <strong>Среднее количество связей:</strong></p>
+            <p>\[\overline{\text{Connections}}^{(t)} = \frac{1}{N} \sum_{i=1}^{N} |\{j : \text{Connection}_{i,j}^{(t)} \geq \text{Threshold}\}|\]</p>
+            
+            <p>3. <strong>Плотность сети:</strong></p>
+            <p>\[\text{Density}^{(t)} = \frac{\text{Active Connections}^{(t)}}{\binom{N}{2}}\]</p>
+            
+            <p>4. <strong>Коэффициент кластеризации:</strong></p>
+            <p>\[\text{ClusteringCoeff}^{(t)} = \frac{1}{N} \sum_{i=1}^{N} C_i^{(t)}\]</p>
+        </div>
+
+        <p><strong>Визуализация:</strong> Линейные графики (Line Charts) с осью X — номер цикла, осью Y — значение метрики.</p>
+
+        <h2 id="network">6. Сетевые метрики</h2>
+        
+        <h3>6.1. Базовые метрики сети</h3>
+        <table>
+            <tr>
+                <th>Метрика</th>
+                <th>Формула</th>
+                <th>Описание</th>
+            </tr>
+            <tr>
+                <td><strong>Количество узлов</strong></td>
+                <td>\(N\)</td>
+                <td>Общее количество агентов</td>
+            </tr>
+            <tr>
+                <td><strong>Количество рёбер</strong></td>
+                <td>\(E = \frac{1}{2}\sum_{i,j} \mathbb{1}[\text{Connection}_{i,j} > 0]\)</td>
+                <td>Количество активных связей</td>
+            </tr>
+            <tr>
+                <td><strong>Плотность сети</strong></td>
+                <td>\(\rho = \frac{2E}{N(N-1)}\)</td>
+                <td>Доля существующих связей от всех возможных</td>
+            </tr>
+            <tr>
+                <td><strong>Средняя степень</strong></td>
+                <td>\(\langle k \rangle = \frac{2E}{N}\)</td>
+                <td>Среднее количество связей на узел</td>
+            </tr>
+        </table>
+        
+        <p><strong>Справка:</strong> <a href="https://ru.wikipedia.org/wiki/Теория_графов" target="_blank">Теория графов — Wikipedia</a></p>
+
+        <h3>6.2. Центральность узлов (Node Centrality)</h3>
+        
+        <h4>6.2.1. Центральность по степени (Degree Centrality)</h4>
+        <div class="formula-box">
+            <p>\[C_D(i) = \deg(i) = |\{j : \text{Connection}_{i,j} > 0\}|\]</p>
+        </div>
+        
+        <div class="interpretation">
+            <p><strong>Интерпретация:</strong> Количество прямых связей узла. Узлы с высокой степенью — "хабы" сети.</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://ru.wikipedia.org/wiki/Центральность" target="_blank">Центральность — Wikipedia</a></p>
+
+        <h4>6.2.2. Центральность по посредничеству (Betweenness Centrality)</h4>
+        <div class="formula-box">
+            <p>\[C_B(v) = \sum_{s \neq v \neq t} \frac{\sigma_{st}(v)}{\sigma_{st}}\]</p>
+            
+            <p>Где:</p>
+            <ul>
+                <li>\(\sigma_{st}\) — количество кратчайших путей между узлами \(s\) и \(t\)</li>
+                <li>\(\sigma_{st}(v)\) — количество кратчайших путей между \(s\) и \(t\), проходящих через \(v\)</li>
+            </ul>
+        </div>
+        
+        <div class="interpretation">
+            <p><strong>Алгоритм:</strong> Алгоритм Брандеса (Brandes' algorithm) с временной сложностью \(O(N \cdot E)\).</p>
+            <p><strong>Интерпретация:</strong> Узлы с высокой посредничеством — "мосты" между различными частями сети.</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://en.wikipedia.org/wiki/Betweenness_centrality" target="_blank">Betweenness centrality — Wikipedia</a></p>
+
+        <h4>6.2.3. Центральность по близости (Closeness Centrality)</h4>
+        <div class="formula-box">
+            <p>\[C_C(i) = \frac{N-1}{\sum_{j \neq i} d(i,j)}\]</p>
+            
+            <p>Где \(d(i,j)\) — длина кратчайшего пути между узлами \(i\) и \(j\).</p>
+        </div>
+        
+        <div class="interpretation">
+            <p><strong>Алгоритм:</strong> Поиск в ширину (BFS) от каждого узла.</p>
+            <p><strong>Интерпретация:</strong> Узлы с высокой близостью могут быстро распространять информацию по всей сети.</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://en.wikipedia.org/wiki/Closeness_centrality" target="_blank">Closeness centrality — Wikipedia</a></p>
+
+        <h3>6.3. Коэффициент кластеризации (Clustering Coefficient)</h3>
+        
+        <div class="formula-box">
+            <p><strong>Локальный коэффициент кластеризации узла \(i\):</strong></p>
+            <p>\[C_i = \frac{2 \cdot |\{e_{jk} : j,k \in N(i), e_{jk} \in E\}|}{k_i(k_i - 1)}\]</p>
+            
+            <p>Где:</p>
+            <ul>
+                <li>\(N(i)\) — множество соседей узла \(i\)</li>
+                <li>\(k_i = |N(i)|\) — степень узла \(i\)</li>
+                <li>Числитель — количество рёбер между соседями узла \(i\) (треугольников)</li>
+                <li>Знаменатель — максимально возможное количество рёбер между соседями</li>
+            </ul>
+            
+            <p><strong>Глобальный коэффициент кластеризации:</strong></p>
+            <p>\[C = \frac{1}{N} \sum_{i=1}^{N} C_i\]</p>
+        </div>
+        
+        <div class="interpretation">
+            <p><strong>Интерпретация:</strong> Мера "плотности" локальных связей. Высокий коэффициент указывает на наличие тесно связанных групп.</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://ru.wikipedia.org/wiki/Коэффициент_кластеризации" target="_blank">Коэффициент кластеризации — Wikipedia</a></p>
+
+        <h3>6.4. Модулярность (Modularity)</h3>
+        
+        <div class="formula-box">
+            <p>\[Q = \frac{1}{2m} \sum_{i,j} \left[A_{ij} - \frac{k_i k_j}{2m}\right] \delta(c_i, c_j)\]</p>
+            
+            <p>Где:</p>
+            <ul>
+                <li>\(m = E\) — количество рёбер</li>
+                <li>\(A_{ij} = \mathbb{1}[\text{Connection}_{i,j} > 0]\) — матрица смежности</li>
+                <li>\(k_i\) — степень узла \(i\)</li>
+                <li>\(c_i\) — кластер узла \(i\)</li>
+                <li>\(\delta(c_i, c_j) = 1\) если \(c_i = c_j\), иначе 0</li>
+            </ul>
+        </div>
+        
+        <div class="interpretation">
+            <p><strong>Интерпретация:</strong> Мера качества разбиения сети на кластеры. Значения близкие к 1 указывают на сильную кластерную структуру.</p>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://en.wikipedia.org/wiki/Modularity_(networks)" target="_blank">Модулярность (сети) — Wikipedia</a></p>
+
+        <h2 id="stats">7. Статистические тесты</h2>
+        
+        <h3>7.1. Тест на нормальность (Jarque-Bera Test)</h3>
+        <p><strong>Назначение:</strong> Проверка, следует ли распределение мнений нормальному закону.</p>
+        
+        <div class="formula-box">
+            <p><strong>Статистика Жарка-Бера:</strong></p>
+            <p>\[JB = \frac{n}{6} \left(S^2 + \frac{K^2}{4}\right)\]</p>
+            
+            <p>Где:</p>
+            <ul>
+                <li>\(n\) — размер выборки</li>
+                <li>\(S\) — коэффициент асимметрии (skewness):</li>
+            </ul>
+            <p>\[S = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^3}{\left(\frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^2\right)^{3/2}}\]</p>
+            
+            <ul>
+                <li>\(K\) — коэффициент эксцесса (kurtosis):</li>
+            </ul>
+            <p>\[K = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^4}{\left(\frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^2\right)^{2}} - 3\]</p>
+        </div>
+
+        <div class="interpretation">
+            <p><strong>Критерий:</strong> При уровне значимости \(\alpha = 0.05\), критическое значение \(JB_{\text{crit}} = 5.991\) (распределение \(\chi^2\) с 2 степенями свободы).</p>
+            
+            <p><strong>Интерпретация:</strong></p>
+            <ul>
+                <li>Если \(JB < JB_{\text{crit}}\), распределение <strong>нормальное</strong></li>
+                <li>Если \(JB \geq JB_{\text{crit}}\), распределение <strong>не нормальное</strong></li>
+            </ul>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://ru.wikipedia.org/wiki/Критерий_Жарка_—_Бера" target="_blank">Тест Жарка-Бера — Wikipedia</a></p>
+
+        <h3>7.2. Корреляционный анализ (Pearson Correlation)</h3>
+        <p><strong>Назначение:</strong> Измерение линейной зависимости между мнениями по различным темам.</p>
+        
+        <div class="formula-box">
+            <p><strong>Коэффициент корреляции Пирсона:</strong></p>
+            <p>\[r_{XY} = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i - \bar{x})^2} \cdot \sqrt{\sum_{i=1}^{n}(y_i - \bar{y})^2}}\]</p>
+            
+            <p>Или эквивалентно:</p>
+            <p>\[r_{XY} = \frac{n\sum x_i y_i - \sum x_i \sum y_i}{\sqrt{n\sum x_i^2 - (\sum x_i)^2} \cdot \sqrt{n\sum y_i^2 - (\sum y_i)^2}}\]</p>
+        </div>
+
+        <div class="interpretation">
+            <p><strong>Диапазон:</strong> \(r_{XY} \in [-1, 1]\)</p>
+            
+            <p><strong>Интерпретация:</strong></p>
+            <ul>
+                <li>\(r_{XY} \approx 1\) — сильная положительная корреляция</li>
+                <li>\(r_{XY} \approx 0\) — отсутствие линейной зависимости</li>
+                <li>\(r_{XY} \approx -1\) — сильная отрицательная корреляция</li>
+            </ul>
+        </div>
+        
+        <p><strong>Справка:</strong> <a href="https://ru.wikipedia.org/wiki/Корреляция" target="_blank">Корреляция Пирсона — Wikipedia</a></p>
+
+        <h2 id="examples">9. Примеры расчетов</h2>
+        
+        <h3>9.1. Пример: Расчет косинусной близости</h3>
+        
+        <div class="note">
+            <p><strong>Дано:</strong></p>
+            <ul>
+                <li>Агент A: \(\vec{A} = (0.6, 0.8, 0.0)\)</li>
+                <li>Тема T: \(\vec{T} = (0.8, 0.6, 0.0)\)</li>
+            </ul>
+        </div>
+
+        <div class="formula-box">
+            <p><strong>Расчет:</strong></p>
+            
+            <p>1. Скалярное произведение:</p>
+            <p>\[\vec{A} \cdot \vec{T} = 0.6 \times 0.8 + 0.8 \times 0.6 + 0.0 \times 0.0 = 0.48 + 0.48 + 0 = 0.96\]</p>
+            
+            <p>2. Нормы векторов:</p>
+            <p>\[\|\vec{A}\| = \sqrt{0.6^2 + 0.8^2 + 0.0^2} = \sqrt{0.36 + 0.64} = 1.0\]</p>
+            <p>\[\|\vec{T}\| = \sqrt{0.8^2 + 0.6^2 + 0.0^2} = \sqrt{0.64 + 0.36} = 1.0\]</p>
+            
+            <p>3. Косинусная близость:</p>
+            <p>\[\text{sim}(\vec{A}, \vec{T}) = \frac{0.96}{1.0 \times 1.0} = 0.96\]</p>
+        </div>
+
+        <div class="interpretation">
+            <p><strong>Интерпретация:</strong> Мнение агента A по теме T равно <strong>+0.96</strong> (сильно "За").</p>
+        </div>
+
+        <h3>9.2. Пример: Расчет локального коэффициента кластеризации</h3>
+        
+        <div class="note">
+            <p><strong>Дано:</strong> Узел \(i\) имеет 4 соседа: \(\{j_1, j_2, j_3, j_4\}\). Связи между соседями:</p>
+            <ul>
+                <li>\(j_1 \leftrightarrow j_2\) (есть)</li>
+                <li>\(j_1 \leftrightarrow j_3\) (есть)</li>
+                <li>\(j_2 \leftrightarrow j_3\) (нет)</li>
+                <li>Остальные пары не связаны</li>
+            </ul>
+        </div>
+
+        <div class="formula-box">
+            <p><strong>Расчет:</strong></p>
+            
+            <p>1. Количество рёбер между соседями: 2 (треугольники \(i-j_1-j_2\) и \(i-j_1-j_3\))</p>
+            <p>2. Максимально возможное количество рёбер: \(\binom{4}{2} = 6\)</p>
+            <p>3. Локальный коэффициент:</p>
+            <p>\[C_i = \frac{2}{6} = 0.33\]</p>
+        </div>
+
+        <div class="interpretation">
+            <p><strong>Интерпретация:</strong> 33% возможных связей между соседями узла \(i\) существуют.</p>
+        </div>
+
+        <h2 id="references">10. Справочные материалы</h2>
+        
+        <h3>10.1. Математические модели</h3>
+        <table>
+            <tr>
+                <th>Модель</th>
+                <th>Ссылка на Wikipedia</th>
+            </tr>
+            <tr>
+                <td>Евклидово пространство</td>
+                <td><a href="https://ru.wikipedia.org/wiki/Евклидово_пространство" target="_blank">https://ru.wikipedia.org/wiki/Евклидово_пространство</a></td>
+            </tr>
+            <tr>
+                <td>Косинусное сходство</td>
+                <td><a href="https://ru.wikipedia.org/wiki/Косинусное_сходство" target="_blank">https://ru.wikipedia.org/wiki/Косинусное_сходство</a></td>
+            </tr>
+            <tr>
+                <td>K-means кластеризация</td>
+                <td><a href="https://ru.wikipedia.org/wiki/Метод_k-средних" target="_blank">https://ru.wikipedia.org/wiki/Метод_k-средних</a></td>
+            </tr>
+            <tr>
+                <td>Модель динамики мнений</td>
+                <td><a href="https://en.wikipedia.org/wiki/Opinion_dynamics" target="_blank">https://en.wikipedia.org/wiki/Opinion_dynamics</a></td>
+            </tr>
+            <tr>
+                <td>Теория графов</td>
+                <td><a href="https://ru.wikipedia.org/wiki/Теория_графов" target="_blank">https://ru.wikipedia.org/wiki/Теория_графов</a></td>
+            </tr>
+            <tr>
+                <td>Центральность</td>
+                <td><a href="https://ru.wikipedia.org/wiki/Центральность" target="_blank">https://ru.wikipedia.org/wiki/Центральность</a></td>
+            </tr>
+            <tr>
+                <td>Betweenness centrality</td>
+                <td><a href="https://en.wikipedia.org/wiki/Betweenness_centrality" target="_blank">https://en.wikipedia.org/wiki/Betweenness_centrality</a></td>
+            </tr>
+            <tr>
+                <td>Closeness centrality</td>
+                <td><a href="https://en.wikipedia.org/wiki/Closeness_centrality" target="_blank">https://en.wikipedia.org/wiki/Closeness_centrality</a></td>
+            </tr>
+            <tr>
+                <td>Коэффициент кластеризации</td>
+                <td><a href="https://ru.wikipedia.org/wiki/Коэффициент_кластеризации" target="_blank">https://ru.wikipedia.org/wiki/Коэффициент_кластеризации</a></td>
+            </tr>
+            <tr>
+                <td>Модулярность (сети)</td>
+                <td><a href="https://en.wikipedia.org/wiki/Modularity_(networks)" target="_blank">https://en.wikipedia.org/wiki/Modularity_(networks)</a></td>
+            </tr>
+            <tr>
+                <td>Тест Жарка-Бера</td>
+                <td><a href="https://ru.wikipedia.org/wiki/Критерий_Жарка_—_Бера" target="_blank">https://ru.wikipedia.org/wiki/Критерий_Жарка_—_Бера</a></td>
+            </tr>
+            <tr>
+                <td>Корреляция Пирсона</td>
+                <td><a href="https://ru.wikipedia.org/wiki/Корреляция" target="_blank">https://ru.wikipedia.org/wiki/Корреляция</a></td>
+            </tr>
+        </table>
+
+        <h3>10.2. Социальные феномены</h3>
+        <table>
+            <tr>
+                <th>Феномен</th>
+                <th>Ссылка на Wikipedia</th>
+            </tr>
+            <tr>
+                <td>Консенсус в социальных сетях</td>
+                <td><a href="https://en.wikipedia.org/wiki/Consensus_decision-making" target="_blank">https://en.wikipedia.org/wiki/Consensus_decision-making</a></td>
+            </tr>
+            <tr>
+                <td>Групповая поляризация</td>
+                <td><a href="https://ru.wikipedia.org/wiki/Групповая_поляризация" target="_blank">https://ru.wikipedia.org/wiki/Групповая_поляризация</a></td>
+            </tr>
+            <tr>
+                <td>Эхо-камера (медиа)</td>
+                <td><a href="https://ru.wikipedia.org/wiki/Эхо-камера_(медиа)" target="_blank">https://ru.wikipedia.org/wiki/Эхо-камера_(медиа)</a></td>
+            </tr>
+            <tr>
+                <td>Информационный каскад</td>
+                <td><a href="https://ru.wikipedia.org/wiki/Информационный_каскад" target="_blank">https://ru.wikipedia.org/wiki/Информационный_каскад</a></td>
+            </tr>
+            <tr>
+                <td>Гомофилия</td>
+                <td><a href="https://ru.wikipedia.org/wiki/Гомофилия" target="_blank">https://ru.wikipedia.org/wiki/Гомофилия</a></td>
+            </tr>
+        </table>
+
+        <hr>
+        
+        <h2>Заключение</h2>
+        <p>Данная техническая документация предоставляет полное описание математических основ, алгоритмов, сценариев и аналитических инструментов приложения <strong>Agent Network Visualizer v2.1</strong>. Все формулы отображаются с использованием MathJax, а ключевые концепции снабжены ссылками на Wikipedia для дальнейшего изучения.</p>
+        
+        <p>Приложение представляет собой мощный инструмент для исследования динамики социальных сетей, формирования мнений и распространения информации в агентных системах.</p>
+        
+        <hr>
+        
+        <p><strong>Контакты для обратной связи:</strong> <a href="https://help.manus.im" target="_blank">https://help.manus.im</a></p>
+        
+        <p><strong>Лицензия:</strong> Документация предоставляется "как есть" для образовательных и исследовательских целей.</p>
+    </div>
+</body>
+</html>
+
